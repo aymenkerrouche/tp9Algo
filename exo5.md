@@ -1,5 +1,11 @@
 ## Exercice 5
 
+| Recherche | Attendu | Obtenu |
+|---|---|---|
+| Une adresse présente | `true` | `true` |
+| Une adresse absente | `false` | `false` |
+| Sur annuaire vide | `false` | `false` |
+
 ### Réponse à la question 3
 
 Si on inverse les deux lignes de l'insertion, l'ancienne chaîne est perdue.

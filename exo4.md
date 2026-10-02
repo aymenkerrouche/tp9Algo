@@ -1,13 +1,5 @@
 ## Exercice 4
 
-On utilise DJB2 avec `unsigned long` :
-
-```c
-h = h * 33 + caractere;
-```
-
-Avec `TAILLE_TABLE = 1024` :
-
 | Adresse | Indice obtenu |
 |---|---:|
 | `alice@mail.com` | 19 |

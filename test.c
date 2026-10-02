@@ -1,4 +1,24 @@
+#include <stdio.h>
+
 #include "annuaire.h"
+
+static int tests = 0;
+static int reussites = 0;
+
+static void verifier(const char *titre, bool obtenu, bool attendu)
+{
+    tests++;
+
+    if (obtenu == attendu)
+    {
+        reussites++;
+        printf("[OK] %s\n", titre);
+    }
+    else
+    {
+        printf("[ECHEC] %s\n", titre);
+    }
+}
 
 int main(void)
 {
@@ -10,10 +30,8 @@ int main(void)
         "eve@mail.com"
     };
 
-    if (seq_search("alice@mail.com") || hash_search("alice@mail.com"))
-    {
-        return 1;
-    }
+    verifier("sequentiel vide", seq_search("alice@mail.com"), false);
+    verifier("hachage vide", hash_search("alice@mail.com"), false);
 
     for (int i = 0; i < 5; i++)
     {
@@ -23,24 +41,21 @@ int main(void)
 
     for (int i = 0; i < 5; i++)
     {
-        if (!seq_search(adresses[i]) || !hash_search(adresses[i]))
-        {
-            seq_free();
-            hash_free();
-            return 1;
-        }
+        verifier("sequentiel adresse presente", seq_search(adresses[i]), true);
+        verifier("hachage adresse presente", hash_search(adresses[i]), true);
     }
 
-    if (seq_search("frank@mail.com") || hash_search("frank@mail.com") ||
-        seq_search("grace@mail.com") || hash_search("grace@mail.com"))
-    {
-        seq_free();
-        hash_free();
-        return 1;
-    }
+    verifier("sequentiel adresse absente 1", seq_search("frank@mail.com"), false);
+    verifier("hachage adresse absente 1", hash_search("frank@mail.com"), false);
+    verifier("sequentiel adresse absente 2", seq_search("grace@mail.com"), false);
+    verifier("hachage adresse absente 2", hash_search("grace@mail.com"), false);
+    verifier("sequentiel casse differente", seq_search("Alice@mail.com"), false);
+    verifier("hachage casse differente", hash_search("Alice@mail.com"), false);
 
     seq_free();
     hash_free();
 
-    return 0;
+    printf("%d/%d tests reussis\n", reussites, tests);
+
+    return reussites == tests ? 0 : 1;
 }

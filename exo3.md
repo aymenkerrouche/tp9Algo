@@ -6,6 +6,12 @@ La recherche compare les adresses dans l'ordre avec `strcmp`.
 - Échecs : `frank@mail.com`, `grace@mail.com`.
 - Annuaire vide : `false`.
 
+| Recherche | Attendu | Obtenu |
+|---|---|---|
+| Une adresse présente | `true` | `true` |
+| Une adresse absente | `false` | `false` |
+| Sur annuaire vide | `false` | `false` |
+
 ### Réponse à la question 4
 
 Le programme compile, mais on compare les adresses mémoire et non le contenu.
