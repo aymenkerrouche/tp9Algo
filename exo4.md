@@ -1,6 +1,6 @@
 ## Exercice 4
 
-Fonction utilisée : DJB2, avec un accumulateur `unsigned long` :
+On utilise DJB2 avec `unsigned long` :
 
 ```c
 h = h * 33 + caractere;
@@ -18,16 +18,16 @@ Avec `TAILLE_TABLE = 1024` :
 
 ### Réponse à la question 3
 
-`alice@mail.com` donne trois fois l'indice `19`. Une fonction de hachage doit être déterministe : la même entrée doit toujours produire la même valeur.
+Les trois résultats sont `19`. La même adresse donne toujours le même indice.
 
 ### Réponse à la question 4
 
-`user1@mail.com` donne `453` et `user2@mail.com` donne `742`. Ces indices ne sont pas voisins.
+`user1@mail.com` donne `453` et `user2@mail.com` donne `742`. Ils ne sont pas voisins.
 
 ### Réponse à la question 5
 
-Il faut conserver `unsigned long`. Avec `int`, le dépassement de capacité signé peut produire un comportement indéfini. Selon le compilateur, une valeur négative peut ensuite être utilisée comme indice, ce qui provoquerait un accès hors limites du tableau.
+Avec `int`, le dépassement peut donner une valeur négative et provoquer un accès hors limites. Il faut utiliser `unsigned long`.
 
 ### Réponse à la question 6
 
-Oui, deux adresses différentes peuvent donner le même indice après le modulo : c'est une collision. Ce n'est pas forcément un défaut de la fonction ; une table de hachage doit gérer ces collisions, notamment avec le chaînage.
+Oui, c'est une collision. Ce n'est pas forcément un défaut : on peut la gérer avec le chaînage.

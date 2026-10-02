@@ -1,21 +1,18 @@
 ## Exercice 3
 
-La recherche séquentielle compare l'adresse recherchée avec chaque utilisateur,
-dans l'ordre, avec `strcmp`.
+La recherche compare les adresses dans l'ordre avec `strcmp`.
 
-- Trois recherches réussissent : `alice@mail.com`, `bob@mail.com` et `carole@mail.com`.
-- Deux recherches échouent : `frank@mail.com` et `grace@mail.com`.
-- Sur un annuaire vide, la recherche renvoie `false` sans accéder au tableau.
+- Réussites : `alice@mail.com`, `bob@mail.com`, `carole@mail.com`.
+- Échecs : `frank@mail.com`, `grace@mail.com`.
+- Annuaire vide : `false`.
 
 ### Réponse à la question 4
 
-Remplacer `strcmp(...) == 0` par `... == email` compare des adresses mémoire,
-pas le contenu des chaînes. Le programme compile, mais la recherche renvoie
-généralement `false`, même pour une adresse présente, car les pointeurs sont
-différents.
+Le programme compile, mais on compare les adresses mémoire et non le contenu.
+La recherche renvoie donc généralement `false`.
 
 ### Réponse à la question 5
 
-- Cas favorable : 1 comparaison, lorsque l'adresse recherchée est la première.
-- Cas moyen : environ `n / 2` comparaisons, lorsque l'adresse est au milieu.
-- Cas défavorable : `n` comparaisons, lorsque l'adresse est la dernière ou absente.
+- Favorable : 1 comparaison, si l'adresse est la première.
+- Moyen : environ `n / 2`, si elle est au milieu.
+- Défavorable : `n`, si elle est la dernière ou absente.
