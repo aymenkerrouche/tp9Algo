@@ -1,4 +1,8 @@
+#include <stdio.h>
+
 #include "annuaire.h"
+
+#define TAILLE_TABLE 1024
 
 int main(void)
 {
@@ -27,6 +31,23 @@ int main(void)
             return 1;
         }
     }
+
+        for (int i = 0; i < 5; i++)
+        {
+         unsigned long indice = hachage(adresses[i]) % TAILLE_TABLE;
+         printf("%s : %lu\n", adresses[i], indice);
+        }
+
+        printf("alice@mail.com (repete) : %lu\n",
+            hachage("alice@mail.com") % TAILLE_TABLE);
+        printf("alice@mail.com (repete) : %lu\n",
+            hachage("alice@mail.com") % TAILLE_TABLE);
+        printf("alice@mail.com (repete) : %lu\n",
+            hachage("alice@mail.com") % TAILLE_TABLE);
+        printf("user1@mail.com : %lu\n",
+            hachage("user1@mail.com") % TAILLE_TABLE);
+        printf("user2@mail.com : %lu\n",
+            hachage("user2@mail.com") % TAILLE_TABLE);
 
     if (seq_search("frank@mail.com") || seq_search("grace@mail.com"))
     {
