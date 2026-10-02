@@ -1,15 +1,37 @@
-#include <stdio.h>
-
 #include "annuaire.h"
 
 int main(void)
 {
-    char email[EMAIL_MAX];
+    const char *adresses[] = {
+        "alice@mail.com",
+        "bob@mail.com",
+        "carole@mail.com",
+        "david@mail.com",
+        "eve@mail.com"
+    };
 
-    for (int i = 0; i < 40; i++)
+    if (seq_search("alice@mail.com"))
     {
-        snprintf(email, EMAIL_MAX, "user%d@mail.com", i + 1);
-        seq_insert(email, i + 1);
+        return 1;
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        seq_insert(adresses[i], i + 1);
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (!seq_search(adresses[i]))
+        {
+            return 1;
+        }
+    }
+
+    if (seq_search("frank@mail.com") || seq_search("grace@mail.com"))
+    {
+        seq_free();
+        return 1;
     }
 
     seq_free();

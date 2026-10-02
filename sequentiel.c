@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "annuaire.h"
 
@@ -36,8 +37,19 @@ void seq_insert(const char *email, int id)
     snprintf(annuaire[taille].email, EMAIL_MAX, "%s", email);
     annuaire[taille].id = id;
     taille++;
+}
 
-    printf("Insertion %d : capacite = %d\n", taille, capacite);
+bool seq_search(const char *email)
+{
+    for (int i = 0; i < taille; i++)
+    {
+        if (strcmp(annuaire[i].email, email) == 0)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void seq_free(void)
