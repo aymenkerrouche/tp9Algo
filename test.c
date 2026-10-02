@@ -1,8 +1,4 @@
-#include <stdio.h>
-
 #include "annuaire.h"
-
-#define TAILLE_TABLE 1024
 
 int main(void)
 {
@@ -14,7 +10,7 @@ int main(void)
         "eve@mail.com"
     };
 
-    if (seq_search("alice@mail.com"))
+    if (seq_search("alice@mail.com") || hash_search("alice@mail.com"))
     {
         return 1;
     }
@@ -22,40 +18,29 @@ int main(void)
     for (int i = 0; i < 5; i++)
     {
         seq_insert(adresses[i], i + 1);
+        hash_insert(adresses[i], i + 1);
     }
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 5; i++)
     {
-        if (!seq_search(adresses[i]))
+        if (!seq_search(adresses[i]) || !hash_search(adresses[i]))
         {
+            seq_free();
+            hash_free();
             return 1;
         }
     }
 
-        for (int i = 0; i < 5; i++)
-        {
-         unsigned long indice = hachage(adresses[i]) % TAILLE_TABLE;
-         printf("%s : %lu\n", adresses[i], indice);
-        }
-
-        printf("alice@mail.com (repete) : %lu\n",
-            hachage("alice@mail.com") % TAILLE_TABLE);
-        printf("alice@mail.com (repete) : %lu\n",
-            hachage("alice@mail.com") % TAILLE_TABLE);
-        printf("alice@mail.com (repete) : %lu\n",
-            hachage("alice@mail.com") % TAILLE_TABLE);
-        printf("user1@mail.com : %lu\n",
-            hachage("user1@mail.com") % TAILLE_TABLE);
-        printf("user2@mail.com : %lu\n",
-            hachage("user2@mail.com") % TAILLE_TABLE);
-
-    if (seq_search("frank@mail.com") || seq_search("grace@mail.com"))
+    if (seq_search("frank@mail.com") || hash_search("frank@mail.com") ||
+        seq_search("grace@mail.com") || hash_search("grace@mail.com"))
     {
         seq_free();
+        hash_free();
         return 1;
     }
 
     seq_free();
+    hash_free();
 
     return 0;
 }
