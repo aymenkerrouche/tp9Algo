@@ -1,5 +1,9 @@
 ## Exercice 5
 
+### Fonctions complétées
+
+`hash_insert`, `hash_search` et `hash_free`.
+
 | Recherche | Attendu | Obtenu |
 |---|---|---|
 | Une adresse présente | `true` | `true` |

@@ -8,4 +8,4 @@ test: sequentiel.o hachage.o test.o
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -f *.o test
+	del /Q *.o test.exe 2>NUL || exit 0
